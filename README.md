@@ -1,4 +1,4 @@
-# Opal_NuggetIce_ble
+# Opal Nugget Ice BLE Integration
 Home Assistant BLE Integration for FirstBuild Opal Nugget Ice Maker.
 
 I am still working on adding switches to turn on/off light and icemaker. If you want switch capability, use the ESPHome code posted below.
