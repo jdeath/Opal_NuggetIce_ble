@@ -46,7 +46,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
             raise UpdateFailed(f"Unable to fetch data: {err}") from err
 
         return data
-
+        
     coordinator = DataUpdateCoordinator(
         hass,
         _LOGGER,

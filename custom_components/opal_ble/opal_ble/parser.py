@@ -111,7 +111,7 @@ class OpalBluetoothDeviceData:
         """Connects to the device through BLE and retrieves relevant data"""
 
         client = await establish_connection(BleakClient, ble_device, ble_device.address)
-        await client.pair()
+        #await client.pair()
         await client.write_gatt_char(NIGHT_MODE,ON_VALUE)
         await client.disconnect()
     
@@ -129,10 +129,13 @@ class OpalBluetoothDeviceData:
         client = await establish_connection(BleakClient, ble_device, ble_device.address)
         await client.pair()
         device = OpalDevice()
-        device.name = ble_device.name
-        device.address = ble_device.address
-            
+        
+        
         device = await self._get_status(client, device)
+        device.name = ble_device.address
+        device.address = ble_device.address
+        _LOGGER.debug("device.name: %s", device.name)
+        _LOGGER.debug("device.address: %s", device.address)
 
         await client.disconnect()
 

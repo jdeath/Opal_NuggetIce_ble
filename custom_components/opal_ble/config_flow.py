@@ -67,7 +67,8 @@ class OpalConfigFlow(ConfigFlow, domain=DOMAIN):
 
         try:
             data = await opal.update_device(ble_device)
-            data.name = discovery_info.advertisement.local_name
+            #data.name = discovery_info.advertisement.local_name
+            data.name = discovery_info.address
             data.address = discovery_info.address
             data.identifier = discovery_info.advertisement.local_name
         except BleakError as err:

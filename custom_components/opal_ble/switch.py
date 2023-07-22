@@ -29,18 +29,21 @@ async def async_setup_entry(
 ) -> None:
     """Set up Switchbot based on a config entry."""
     coordinator: DataUpdateCoordinator[OpalDevice] = hass.data[DOMAIN][entry.entry_id]
-    async_add_entities([OpalNightModeSwitch(coordinator,coordinator.data)])
+    async_add_entities([OpalNightModeSwitch(coordinator)])
+    _LOGGER.debug(coordinator.data)
+    _LOGGER.debug("Making Switch: async_setup_entry ")
 
 class OpalNightModeSwitch(CoordinatorEntity[DataUpdateCoordinator[OpalDevice]], SwitchEntity):
     
     _attr_device_class = SwitchDeviceClass.SWITCH
+    _attr_has_entity_name = True
     
-    def __init__(self, coordinator: DataUpdateCoordinator,opal_device: OpalDevice) -> None:
+    def __init__(self, coordinator: DataUpdateCoordinator) -> None:
         """Initialize the Switchbot."""
-        
         super().__init__(coordinator)
         self._attr_is_on = False
-    
+        _LOGGER.debug("Init Switch")
+         
     async def async_added_to_hass(self) -> None:
         """Run when entity about to be added."""
         await super().async_added_to_hass()
@@ -49,10 +52,13 @@ class OpalNightModeSwitch(CoordinatorEntity[DataUpdateCoordinator[OpalDevice]], 
     def is_on(self) -> bool | None:
         """Return true if device is on."""
         #return self._device._nightMode
+        _LOGGER.debug("is_on")
         return True
 
     async def async_turn_on(self, **kwargs):
-        self._device.night_mode_on()
+        return
+        #await self._device.night_mode_on()
 
     async def async_turn_off(self, **kwargs):
-        self._device.night_mode_off()
+        return
+        #await self._device.night_mode_off()
