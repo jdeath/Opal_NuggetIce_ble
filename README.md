@@ -6,6 +6,7 @@ I am still working on adding switches to turn on/off light and icemaker. If you 
 This might work for the GE Branded model, not sure. Mine is the OG FirstBuild version
 
 References:
+
 @shmuelzon https://github.com/shmuelzon/esp32-ble2mqtt/wiki/Opal-(GE)-Ice-Maker
 
 @SirSmith ESPHome version: https://community.home-assistant.io/t/json-to-yaml-conversion-for-ge-opal
