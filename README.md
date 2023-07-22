@@ -1,6 +1,9 @@
 # Opal_NuggetIce_ble
-Home Assistant BLE Integration for FirstBuild Opal Nugget Ice Maker
-Still working on adding switches to turn on/off light and icemaker. It might work for the GE Branded model, not sure
+Home Assistant BLE Integration for FirstBuild Opal Nugget Ice Maker.
+
+I am still working on adding switches to turn on/off light and icemaker. If you want switch capability, use the ESPHome code posted below.
+
+This might work for the GE Branded model, not sure. Mine is the OG FirstBuild version
 
 ### Installation Instructions
 - Add this repo into HACS
