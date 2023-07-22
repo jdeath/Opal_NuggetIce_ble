@@ -1,0 +1,8 @@
+"""Constants for RD200 BLE."""
+
+DOMAIN = "opal_ble"
+
+VOLUME_BECQUEREL = "Bq/m³"
+VOLUME_PICOCURIE = "pCi/L"
+
+DEFAULT_SCAN_INTERVAL = 600
