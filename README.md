@@ -136,6 +136,23 @@ switch:
           characteristic_uuid: '79994230-4b04-40cd-85c9-02dd1a8d4dd0'
           # List of bytes to write.
           value: [0x00]
+
+text_sensor:
+  - platform: template
+    name: "Make State String"
+    id: make_state_string
+    lambda: |-
+      if (id(make_state).state == 0 ) {
+        return {"Not Making Ice"};
+      } if (id(make_state).state == 1 ) {
+        return {"Making Ice"};
+      } if (id(make_state).state == 2 ) {
+        return {"Out of Water"};
+      } if (id(make_state).state == 3 ) {
+        return {"Ice Bin Full"};
+      } else {
+        return {"Unknown"};
+      }
 ```
 
  
