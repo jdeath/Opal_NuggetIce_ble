@@ -1,7 +1,7 @@
 # Opal Nugget Ice BLE Integration
 Home Assistant BLE Integration for FirstBuild Opal Nugget Ice Maker.
 
-I am still working on adding switches to turn on/off light and icemaker. If you want switch capability, use the ESPHome code posted below.
+I am still working on adding switches to turn on/off light and icemaker. If you want switch capability, use the ESPHome code posted below. I am using the ESPHome code right now as has more functionality.
 
 This might work for the GE Branded model, not sure. Mine is the OG FirstBuild version
 
@@ -80,6 +80,7 @@ sensor:
   - platform: ble_client
     ble_client_id: ice_maker
     name: "Ice Bin State"
+    id: icebin_state
     service_uuid: '3e6763c5-9429-40cc-909e-bebf8c7487be'
     characteristic_uuid: '5bcbf6b1-de80-94b6-0f4b-99fb984707b6'
     type: characteristic
@@ -89,6 +90,12 @@ sensor:
     id: night_mode
     service_uuid: '3e6763c5-9429-40cc-909e-bebf8c7487be'
     characteristic_uuid: '37988f00-ea39-4a2d-9983-afad6535c02e'
+    type: characteristic
+  - platform: ble_client
+    ble_client_id: ice_maker
+    name: "Clearning Phase"
+    service_uuid: '3e6763c5-9429-40cc-909e-bebf8c7487be'
+    characteristic_uuid: 'efe4bd77-0600-47d7-b3f6-dc81af0d9aaf'
     type: characteristic
 
 switch:
@@ -135,7 +142,7 @@ switch:
           service_uuid: '3e6763c5-9429-40cc-909e-bebf8c7487be'
           characteristic_uuid: '79994230-4b04-40cd-85c9-02dd1a8d4dd0'
           # List of bytes to write.
-          value: [0x00]
+          value: [0x00]        
 
 text_sensor:
   - platform: template
@@ -150,9 +157,22 @@ text_sensor:
         return {"Out of Water"};
       } if (id(make_state).state == 3 ) {
         return {"Ice Bin Full"};
+      } if (id(make_state).state == 4 ) {
+        return {"Cleaning"};
       } else {
         return {"Unknown"};
       }
+  - platform: template
+    name: "Icebin String"
+    id: icebin_state_string
+    lambda: |-
+      if (id(icebin_state).state == 0 ) {
+        return {"In"};
+      } if (id(icebin_state).state == 1 ) {
+        return {"Out"};
+      } else {
+        return {"Unknown"};
+      }    
 ```
 
  
