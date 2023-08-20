@@ -90,7 +90,9 @@ class OpalBluetoothDeviceData:
             makeString = "Out of Water"
         if temp2 == 3:
             makeString = "Bin Full"    
-        
+        if temp2 == 4:
+            makeString = "Cleaning"
+            
         device.sensors["make_state_string"] = makeString
         
         temp = await client.read_gatt_char(ICEBIN_STATE)
