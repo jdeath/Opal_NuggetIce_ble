@@ -44,13 +44,6 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
-esp32_ble_tracker:
-  scan_parameters:
-    active: True
-
-bluetooth_proxy:
-  active: True
-
 ble_client:
   - mac_address: 'XX:XX:XX:XX:XX:XX'
     id: ice_maker
@@ -93,7 +86,7 @@ sensor:
     type: characteristic
   - platform: ble_client
     ble_client_id: ice_maker
-    name: "Clearning Phase"
+    name: "Cleaning Phase"
     service_uuid: '3e6763c5-9429-40cc-909e-bebf8c7487be'
     characteristic_uuid: 'efe4bd77-0600-47d7-b3f6-dc81af0d9aaf'
     type: characteristic
